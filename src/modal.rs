@@ -26,14 +26,10 @@ pub fn find_modal_text(
                     continue;
                 }
             },
-            ModalComponent::Label(label) => match label.components.get_mut(0) {
-                Some(serenity::LabelComponent::InputText(text)) => text,
-                Some(_) => {
+            ModalComponent::Label(label) => match &mut label.component {
+                serenity::LabelComponent::InputText(text) => text,
+                _ => {
                     tracing::warn!("unexpected non input text component in modal response");
-                    continue;
-                }
-                None => {
-                    tracing::warn!("empty label in modal response");
                     continue;
                 }
             },
