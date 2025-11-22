@@ -14,7 +14,7 @@ pub struct CreateReply {
     /// Whether the message is ephemeral (only has an effect in application commands)
     pub ephemeral: Option<bool>,
     /// Message components, that is, buttons and select menus.
-    pub components: Option<Vec<serenity::CreateActionRow>>,
+    pub components: Option<Vec<serenity::CreateMessageComponent>>,
     /// The allowed mentions for the message.
     pub allowed_mentions: Option<serenity::CreateAllowedMentions>,
     /// Message poll, if present.
@@ -43,7 +43,7 @@ impl CreateReply {
     /// Set components (buttons and select menus) for this message.
     ///
     /// Any previously set components will be overwritten.
-    pub fn components(mut self, components: Vec<serenity::CreateActionRow>) -> Self {
+    pub fn components(mut self, components: Vec<serenity::CreateMessageComponent>) -> Self {
         self.components = Some(components);
         self
     }

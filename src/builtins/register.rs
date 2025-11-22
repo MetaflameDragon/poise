@@ -160,7 +160,7 @@ pub async fn register_application_commands_buttons<U, E>(
         return Ok(());
     }
 
-    let components = serenity::CreateActionRow::Buttons(vec![
+    let components = serenity::CreateMessageComponent::buttons(vec![
         serenity::CreateButton::new("register.guild")
             .label("Register in guild")
             .style(serenity::ButtonStyle::Primary)

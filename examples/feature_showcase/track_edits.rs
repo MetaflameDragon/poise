@@ -10,7 +10,7 @@ pub async fn test_reuse_response(ctx: Context<'_>) -> Result<(), Error> {
             .description("embed 1")
             .image(image_url);
 
-        let components = vec![serenity::CreateActionRow::Buttons(vec![
+        let components = vec![serenity::CreateMessageComponent::buttons(vec![
             serenity::CreateButton::new("1")
                 .label("button 1")
                 .style(serenity::ButtonStyle::Primary),
@@ -32,7 +32,7 @@ pub async fn test_reuse_response(ctx: Context<'_>) -> Result<(), Error> {
             .description("embed 2")
             .image(image_url);
 
-        let components = vec![serenity::CreateActionRow::Buttons(vec![
+        let components = vec![serenity::CreateMessageComponent::buttons(vec![
             serenity::CreateButton::new("2")
                 .label("button 2")
                 .style(serenity::ButtonStyle::Danger),

@@ -7,7 +7,7 @@ pub async fn boop(ctx: Context<'_>) -> Result<(), Error> {
     let uuid_boop = ctx.id();
 
     let reply = {
-        let components = vec![serenity::CreateActionRow::Buttons(vec![
+        let components = vec![serenity::CreateMessageComponent::buttons(vec![
             serenity::CreateButton::new(format!("{uuid_boop}"))
                 .style(serenity::ButtonStyle::Primary)
                 .label("Boop me!"),
