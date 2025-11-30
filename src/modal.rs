@@ -1,7 +1,7 @@
 //! Modal trait and utility items for implementing it (mainly for the derive
 //! macro)
 
-use serenity::all::{ActionRow, InputText, ModalComponent};
+use serenity::all::{ActionRow, InputText, ModalInteractionComponent};
 
 use crate::serenity_prelude as serenity;
 
@@ -15,7 +15,7 @@ pub fn find_modal_text(
 ) -> Option<String> {
     for comp in &mut data.components {
         let text: &mut InputText = match comp {
-            ModalComponent::ActionRow(row) => match row.components.get_mut(0) {
+            ModalInteractionComponent::ActionRow(row) => match row.components.get_mut(0) {
                 Some(serenity::ActionRowComponent::InputText(text)) => text,
                 Some(_) => {
                     tracing::warn!("unexpected non input text component in modal response");
@@ -26,13 +26,14 @@ pub fn find_modal_text(
                     continue;
                 }
             },
-            ModalComponent::Label(label) => match &mut label.component {
+            ModalInteractionComponent::Label(label) => match &mut label.component {
                 serenity::LabelComponent::InputText(text) => text,
                 _ => {
                     tracing::warn!("unexpected non input text component in modal response");
                     continue;
                 }
             },
+            ModalInteractionComponent::TextDisplay => continue,
             _ => {
                 tracing::warn!("unexpected top-level model component in modal response");
                 continue;
